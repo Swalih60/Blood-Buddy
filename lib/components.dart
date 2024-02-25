@@ -9,12 +9,12 @@ class textField extends StatelessWidget {
   final int maxlength;
 
   const textField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.label,
     required this.icon,
     required this.maxlength,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

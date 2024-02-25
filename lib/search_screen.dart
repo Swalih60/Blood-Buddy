@@ -2,13 +2,14 @@
 import 'package:blood/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class SearchScreen extends StatelessWidget {
   final String? selectedItem;
   SearchScreen({
-    Key? key,
+    super.key,
     this.selectedItem,
-  }) : super(key: key);
+  });
 
   final FirebaseServices fs = FirebaseServices();
 
@@ -44,7 +45,7 @@ class SearchScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Container(
-                        height: 80,
+                        height: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           gradient: const LinearGradient(
@@ -54,6 +55,14 @@ class SearchScreen extends StatelessWidget {
                           ),
                         ),
                         child: ListTile(
+                            subtitle: IconButton(
+                                onPressed: () {
+                                  FlutterPhoneDirectCaller.callNumber(num);
+                                },
+                                icon: const Icon(
+                                  Icons.call,
+                                  color: Colors.green,
+                                )),
                             leading: Text(
                               blood,
                               style: const TextStyle(

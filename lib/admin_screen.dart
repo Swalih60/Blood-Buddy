@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:blood/home_screen.dart';
 import 'package:blood/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatelessWidget {
   AdminScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FirebaseServices fs = FirebaseServices();
 
@@ -17,6 +18,9 @@ class AdminScreen extends StatelessWidget {
           leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ));
               },
               icon: const Icon(Icons.arrow_back)),
           title: const Text("ADMIN"),

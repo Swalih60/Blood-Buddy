@@ -6,8 +6,8 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class ListScreen extends StatelessWidget {
   ListScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final FirebaseServices fs = FirebaseServices();
 

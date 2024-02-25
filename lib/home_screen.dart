@@ -3,6 +3,7 @@ import 'package:blood/list_screen.dart';
 import 'package:blood/search_screen.dart';
 import 'package:blood/update_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -21,6 +22,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              SystemNavigator.pop();
+            },
+            icon: const Icon(Icons.arrow_back)),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -109,7 +115,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
         backgroundColor: Colors.red,
-        title: const Text("Blood Bank"),
+        title: const Text("Blood Buddy"),
         centerTitle: true,
       ),
       body: ValueListenableBuilder(

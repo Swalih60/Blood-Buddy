@@ -17,4 +17,8 @@ class FirebaseServices {
     final snaps = services.snapshots();
     return snaps;
   }
+
+  Future<void> deleteBlood(String docId) {
+    return services.doc(docId).delete();
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:blood/admincheck_screen.dart';
 import 'package:blood/list_screen.dart';
 import 'package:blood/search_screen.dart';
 import 'package:blood/update_screen.dart';
@@ -6,14 +7,15 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  ValueNotifier dropValue = ValueNotifier('A+');
+  final ValueNotifier dropValue = ValueNotifier('A+');
 
   final List<Widget> pages = [
     ListScreen(),
     const UpdateScreen(),
+    AdminCheckScreen(),
   ];
 
-  ValueNotifier selectedPage = ValueNotifier(0);
+  final ValueNotifier selectedPage = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +120,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.green,
+        unselectedItemColor: Colors.blue,
         backgroundColor: const Color.fromARGB(255, 181, 220, 251),
         items: const [
           BottomNavigationBarItem(
@@ -128,6 +130,10 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.update),
             label: "UPDATE",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.lock),
+            label: "ADMIN",
           ),
         ],
         currentIndex: selectedPage.value,

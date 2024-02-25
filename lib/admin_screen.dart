@@ -2,10 +2,9 @@
 import 'package:blood/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-class ListScreen extends StatelessWidget {
-  ListScreen({
+class AdminScreen extends StatelessWidget {
+  AdminScreen({
     Key? key,
   }) : super(key: key);
 
@@ -14,6 +13,15 @@ class ListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(Icons.arrow_back)),
+          title: const Text("ADMIN"),
+          centerTitle: true,
+        ),
         backgroundColor: const Color.fromARGB(255, 161, 213, 250),
         body: StreamBuilder(
           stream: fs.readBlood(),
@@ -24,11 +32,10 @@ class ListScreen extends StatelessWidget {
                 itemCount: bloodlist.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot doc = bloodlist[index];
-
+                  String docID = doc.id;
                   Map<String, dynamic> data =
                       doc.data() as Map<String, dynamic>;
                   String blood = data['blood'];
-
                   String name = data['name'];
                   String num = data['num'];
 
@@ -48,14 +55,6 @@ class ListScreen extends StatelessWidget {
                         ),
                       ),
                       child: ListTile(
-                          subtitle: IconButton(
-                              onPressed: () {
-                                FlutterPhoneDirectCaller.callNumber(num);
-                              },
-                              icon: const Icon(
-                                Icons.call,
-                                color: Colors.green,
-                              )),
                           leading: Text(
                             blood,
                             style: const TextStyle(
@@ -70,6 +69,14 @@ class ListScreen extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
+                          subtitle: IconButton(
+                              onPressed: () {
+                                fs.deleteBlood(docID);
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              )),
                           trailing: Text(
                             num,
                             style: const TextStyle(

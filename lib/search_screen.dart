@@ -30,7 +30,7 @@ class SearchScreen extends StatelessWidget {
                 itemCount: bloodlist.length,
                 itemBuilder: (context, index) {
                   DocumentSnapshot doc = bloodlist[index];
-                  String docID = doc.id;
+
                   Map<String, dynamic> data =
                       doc.data() as Map<String, dynamic>;
                   String blood = data['blood'];
